@@ -72,7 +72,7 @@ The values are fetched from the @var{bytevector} starting at the
 @code{"C"}, this translates into a @code{bytevector-u8-ref} call.
 
 @example
-(import (weinholt struct pack))
+(import (struct pack))
 (unpack "!xd" (pack "!xd" 3.14))
 @result{} 3.14
 @end example
