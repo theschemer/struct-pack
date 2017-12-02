@@ -4,14 +4,13 @@
 @section Binary structure utilities
 
 @menu
-@c * struct der::         ASN.1 DER reader
 * struct pack::        Binary structure packing and unpacking
 @end menu
 
 @c ======================================================================
 @node struct pack
 @subsection Binary structure packing and unpacking
-With @code{(weinholt struct pack)} you can easily access fields in a
+With @code{(struct pack)} you can easily access fields in a
 bytevector and make new bytevectors from fields. The library defines
 syntax that is similar to Python's struct module or Perl's pack/unpack
 functions.
@@ -157,22 +156,3 @@ if packed together, including any padding.
 @result{} 9
 @end example
 @end deffn
-
-@noindent
-Version history:
-@itemize
-@item
-@code{(1 0)} -- Initial version.
-@item
-@code{(1 1)} -- @code{unpack} can now be used as a procedure.
-@item
-@code{(1 2)} -- Added the format characters @code{a} and @code{u}.
-@item
-@code{(1 3)} -- Added @code{get-unpack}. Removed the unnecessary size check
-in unpack.
-@item
-@code{(1 4)} -- @code{pack}, @code{get-unpack} and @code{format-size}
-are now syntax. The unpack syntax can handle non-constant offsets.
-Removed another unnecessary size check in @code{pack!}. Added
-documentation and examples.
-@end itemize

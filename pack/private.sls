@@ -1,5 +1,5 @@
 ;; -*- mode: scheme; coding: utf-8 -*-
-;; Copyright © 2008, 2009, 2012 Göran Weinholt <goran@weinholt.se>
+;; Copyright © 2008, 2009, 2012, 2017 Göran Weinholt <goran@weinholt.se>
 
 ;; Permission is hereby granted, free of charge, to any person obtaining a
 ;; copy of this software and associated documentation files (the "Software"),
@@ -20,10 +20,10 @@
 ;; DEALINGS IN THE SOFTWARE.
 #!r6rs
 
-;; Auxiliary library for (weinholt struct). Please don't use this
-;; library directly.
+;; Auxiliary library for (struct pack). Please don't use this library
+;; directly.
 
-(library (weinholt struct pack-aux)
+(library (struct pack private)
   (export format-size roundb add)
   (import (for (rnrs) (meta -1)))
 
@@ -43,7 +43,7 @@
            (with-syntax ((x offset))
              #`(bitwise-and (+ x #,(- alignment 1))
                             #,(- alignment))))))
-  
+
   ;; Find the number of bytes the format requires.
   ;; (format-size "2SQ") => 16
   (define (format-size fmt)

@@ -1,5 +1,5 @@
 ;; -*- mode: scheme; coding: utf-8 -*-
-;; Copyright © 2008, 2009, 2010, 2011, 2012 Göran Weinholt <goran@weinholt.se>
+;; Copyright © 2008, 2009, 2010, 2011, 2012, 2017 Göran Weinholt <goran@weinholt.se>
 
 ;; Permission is hereby granted, free of charge, to any person obtaining a
 ;; copy of this software and associated documentation files (the "Software"),
@@ -25,7 +25,7 @@
 ;;; Syntax
 
 ;; This syntax is similar to Python's struct module or Perl's
-;; pack/unpack functions. 
+;; pack/unpack functions.
 
 ;; The syntax of the format string is as follows:
 
@@ -138,10 +138,10 @@
 ;; The calls to bytevector-zero! are there to put in zeros where the
 ;; padding is. The bitwise-and is to align the indices.
 
-(library (weinholt struct pack)
+(library (struct pack)
   (export format-size pack pack! unpack get-unpack)
   (import (rnrs)
-          (for (prefix (weinholt struct pack-aux) aux:)
+          (for (prefix (struct pack private) aux:)
                expand run))
 
   (define-syntax unpack*
@@ -564,7 +564,4 @@
               bv))
          (var
           (identifier? #'var)
-          #'pack**)))))
-
-
-  )
+          #'pack**))))))

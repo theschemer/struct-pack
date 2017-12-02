@@ -1,6 +1,6 @@
 #!/usr/bin/env scheme-script
 ;; -*- mode: scheme; coding: utf-8 -*- !#
-;; Copyright © 2008, 2009, 2010, 2011 Göran Weinholt <goran@weinholt.se>
+;; Copyright © 2008, 2009, 2010, 2011, 2017 Göran Weinholt <goran@weinholt.se>
 
 ;; Permission is hereby granted, free of charge, to any person obtaining a
 ;; copy of this software and associated documentation files (the "Software"),
@@ -21,15 +21,15 @@
 ;; DEALINGS IN THE SOFTWARE.
 #!r6rs
 
-;; Test suite for the (weinholt struct pack) library.
+;; Test suite for the (struct pack) library.
 
 ;; This program also tests the host implementation's bytevector
 ;; procedures quite thoroughly, as it turns out.
 
 (import (rnrs)
         (rnrs eval)
-        (weinholt struct pack)
-        (only (weinholt struct pack-aux) roundb)
+        (struct pack)
+        (only (struct pack private) roundb)
         (srfi :78 lightweight-testing)
         (only (srfi :1 lists) make-list)
         (rename (only (srfi :27 random-bits) random-integer
@@ -45,12 +45,12 @@
   (let ()
     (check (apply pack fmt values) => expect)
     (check (eval `(pack ,fmt ,@values)
-                 (environment '(rnrs) '(weinholt struct pack)))
+                 (environment '(rnrs) '(struct pack)))
            => expect)
     (check (call-with-values (lambda () (unpack fmt expect)) list)
            => values)
     (check (eval `(call-with-values (lambda () (unpack ,fmt ',expect)) list)
-                 (environment '(rnrs) '(weinholt struct pack)))
+                 (environment '(rnrs) '(struct pack)))
            => values)
     #f))
 
