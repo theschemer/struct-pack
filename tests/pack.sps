@@ -37,7 +37,9 @@
                 (random-integer random)))
 
 (define x
-  (random-source-randomize! default-random-source))
+  (begin
+    (random-source-randomize! default-random-source)
+    #f))
 
 (define (check-pack expect fmt . values)
   (display "\nFormat: ") (write fmt)
@@ -99,7 +101,8 @@ the format string. Then see if pack/unpack gives the expected result."
                       ((little) '(#\<))
                       ((big) (if (zero? (random 2))
                                  '(#\!) '(#\>)))
-                      ((native) '(#\=))))
+                      ((native) '(#\=))
+                      (else (error 'random-test "Wrong endianness" endianness))))
              (values '())
              (o 0))
       (let ((t (vector-ref types (random (vector-length types)))))

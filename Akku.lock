@@ -1,10 +1,6 @@
 #!r6rs ;; -*-scheme-*-
 (import (akku format lockfile))
 (projects
- #;
  ((name "chez-srfi")
-  (location (git "https://github.com/akeep/chez-srfi.git"))
-  (revision "ad96ec70224b04fb79cfaf0491f600cc07114032"))
- ((name "chez-srfi")
-  (location (git "https://github.com/weinholt/chez-srfi"))
-  (revision "3830f8f85aa97521146b832d9043ee4841163c3f")))
+  (location (git "https://github.com/akeep/chez-srfi"))
+  (revision "42d6d4cf4f506ce41152f16e30e0d7e059faef95")))
