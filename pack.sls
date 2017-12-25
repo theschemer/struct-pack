@@ -139,7 +139,7 @@
 ;; padding is. The bitwise-and is to align the indices.
 
 (library (struct pack)
-  (export format-size pack pack! unpack get-unpack)
+  (export format-size pack pack! unpack get-unpack put-pack)
   (import (rnrs)
           (for (prefix (struct pack private) aux:)
                expand run))
@@ -564,4 +564,19 @@
               bv))
          (var
           (identifier? #'var)
-          #'pack**))))))
+          #'pack**)))))
+
+  (define (put-pack** port fmt . vals)
+    (put-bytevector port (apply pack fmt vals)))
+
+  (define-syntax put-pack
+    (make-variable-transformer
+     (lambda (x)
+       (syntax-case x ()
+         ((_ port fmt vals ...)
+          #'(put-bytevector port (pack fmt vals ...)))
+         ((_ . rest)
+          #'(put-pack** . rest))
+         (var
+          (identifier? #'var)
+          #'put-pack**))))))

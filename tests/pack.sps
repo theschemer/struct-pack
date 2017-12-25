@@ -250,4 +250,11 @@ the format string. Then see if pack/unpack gives the expected result."
 
 (check-pack '#vu8(4 0 0 0 0 0 0 1 0) "u!C Q" 4 #x100)
 
+(check (call-with-bytevector-output-port
+         (lambda (p)
+           (put-pack p "!CS" 1 2)
+           (put-bytevector p #vu8(1 2 3))))
+       => #vu8(1   0   0 2   1 2 3))
+
 (check-report)
+(assert (check-passed? 683))
